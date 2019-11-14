@@ -8,9 +8,9 @@ export class ConfigService {
   private config;
   constructor() {
       this.config = {
-        BASEURL: "http://localhost:3000",
-        ENDPOINT: {
-          character:'post',
+        BASEURL: "https://swapi.co/api/",
+        resources: {
+          PEOPLE:'people',
         }
       }
   }
@@ -20,6 +20,10 @@ export class ConfigService {
 
   getUrlBase() {
     return this.config.BASEURL;
+  }
+
+  getResources() {
+    return this.config.resources;
   }
 
 

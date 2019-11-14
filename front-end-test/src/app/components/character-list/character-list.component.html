@@ -1,1 +1,7 @@
-<p>character-list works!</p>
+<div *ngIf='list$ | async as data'>
+
+    <div *ngFor="let list of data.results">
+        {{list.name}}
+    </div>
+
+</div>

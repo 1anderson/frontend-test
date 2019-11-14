@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+
 
 import {ConfigService} from '../config/config.service';
 
@@ -20,7 +19,7 @@ export class CrudService {
       for (let [key,value] of Object.entries(queryParams)) {
         params = params.set(key, queryParams[key]);
       }
-    return this.http.get<T[]>(`${this.ulrBase}/${entity}`,{ params });
+    return this.http.get<T[]>(`${this.ulrBase}${entity}`,{ params });
   }
 }
 
