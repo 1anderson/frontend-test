@@ -1,7 +1,14 @@
-<div *ngIf='list$ | async as data'>
+<div>
 
-    <div *ngFor="let list of data.results">
+    <div *ngFor="let list of list$">
         {{list.name}}
     </div>
 
+    <app-pagination
+      [setPagination]="{
+        'itemsCount': totalUsersAmount,
+        'pageSize': 10
+      }"
+      (goToPage)="goToPage($event)"
+    ></app-pagination>
 </div>

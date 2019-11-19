@@ -10,16 +10,41 @@ import { Observable } from 'rxjs';
   styleUrls: ['./character-list.component.css']
 })
 export class CharacterListComponent implements OnInit {
-
-  private list$: Observable<any[]>;
+  private config = {}
+  private list$: Array<any[]>;
   private resources = {};
+  private _currentPage: number = 1;
+  private _currentSearchValue: string = '';
+  public totalUsersAmount: number = 0;
+
   constructor( private crudService: CrudService, private configService: ConfigService ) {
     this.resources = this.configService.getResources();
 
   }
 
   ngOnInit() {
-    this.list$ = this.crudService.get<any>(this.resources['PEOPLE']);
+    this._loadUsers(
+      this._currentPage,
+      this._currentSearchValue
+    );
   }
+
+public goToPage(page: number): void {
+    this._currentPage = page;
+    this._loadUsers(
+      this._currentPage,
+      this._currentSearchValue
+    );
+  }
+
+  private _loadUsers(
+    page: number = 1, searchParam: string = ''
+  ) {
+      this.crudService.get<any>(this.resources['PEOPLE'], {page})
+      .subscribe(data =>{
+        this.list$ = data['results'];
+        this.totalUsersAmount = data['count'];
+      });
+    }
 
 }

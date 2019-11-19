@@ -4,19 +4,19 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing-module';
-
-import { CharacterListComponent } from './components/character-list/character-list.component';
-
+import { ComponentsModule } from './components/components.module'
+import { SharedModule } from '../app/shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CharacterListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ComponentsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
