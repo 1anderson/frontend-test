@@ -1,8 +1,8 @@
-<div class="pagination p1" >
+<div class="pagination p1"  [ngClass]="{ 'no-click': noClick }">
     <ng-container *ngIf="pagesArray.length <= 10" >
     <ul>
       <a *ngIf="currentPage !== 1"
-      (click)="setPage(currentPage - 1)">
+      (click)="setPage(currentPage - 1)" class="pointer">
         <li><</li>
       </a>
       <a
@@ -10,23 +10,11 @@
         [ngClass]="{ 'is-active': currentPage === index + 1 }"
         (click)="setPage(index + 1)"
       >
-        <li>{{ index + 1 }}</li>
+        <li class="pointer">{{ index + 1 }}</li>
       </a>
       <a  *ngIf="currentPage !== pagesArray.length"
-      (click)="setPage(currentPage + 1)">
+      (click)="setPage(currentPage + 1)" class="pointer">
         <li>></li>
       </a>
       </ul>
     </ng-container>
-    <ng-container *ngIf="pagesArray.length > 10" >
-      <select
-        [ngModel]="currentPage"
-        (ngModelChange)="selectPage($event.target.value)">
-        <option
-          *ngFor="let p of pagesArray; let index = index"
-          [value]="(index + 1)" >
-          {{ index + 1 }}
-        </option>
-      </select>
-    </ng-container>
-   </div>

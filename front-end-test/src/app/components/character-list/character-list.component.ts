@@ -30,6 +30,7 @@ export class CharacterListComponent implements OnInit {
   }
 
 public goToPage(page: number): void {
+   this.list$ = [];
     this._currentPage = page;
     this._loadUsers(
       this._currentPage,
@@ -46,5 +47,12 @@ public goToPage(page: number): void {
         this.totalUsersAmount = data['count'];
       });
     }
+
+  public listIsEmpty() {
+    if( this.list$ === undefined || this.list$.length==0) {
+      return true;
+    }
+    return false;
+  }
 
 }

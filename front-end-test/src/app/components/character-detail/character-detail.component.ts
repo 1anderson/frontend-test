@@ -15,8 +15,6 @@ export class CharacterDetailComponent implements OnInit {
 
   ngOnInit() {
     this.character = history.state;
-    let Observableslist$ = [];
-    let speciesList$ = [];
     forkJoin( this.observableService.getResouce( this.character['films']),
       this.observableService.getResouce( this.character['species']),
       this.observableService.getResouce( this.character['starships']))

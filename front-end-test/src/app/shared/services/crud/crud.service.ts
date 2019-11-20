@@ -16,7 +16,7 @@ export class CrudService {
 
   get<T>( entity, queryParams = {} )  {
     let params = new HttpParams();
-      for (let [key,value] of Object.entries(queryParams)) {
+      for (let [ key ] of Object.entries(queryParams)) {
         params = params.set(key, queryParams[key]);
       }
     return this.http.get<T[]>(`${this.ulrBase}${entity}`,{ params });

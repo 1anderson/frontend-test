@@ -1,15 +1,21 @@
-<div class="column container-list list-type1">
+<div class="column container-list">
+  <h1>Lista de Personagens</h1>
+  <div class="spinner-container column" *ngIf="listIsEmpty()">
+      <div class="spinner"></div>
+  </div>
+<div class="list-type1">
     <ol>
       <li *ngFor="let list of list$">
           <a [routerLink]="'/detail'" [state]='list'>{{list.name}}</a>
       </li>
     </ol>
-
-    <app-pagination
-      [setPagination]="{
-        'itemsCount': totalUsersAmount,
-        'pageSize': 10
-      }"
-      (goToPage)="goToPage($event)"
-    ></app-pagination>
+</div>
+<app-pagination
+[setPagination]="{
+  'itemsCount': totalUsersAmount,
+  'pageSize': 10
+}"
+(goToPage)="goToPage($event)"
+[noClick]="listIsEmpty()"
+></app-pagination>
 </div>

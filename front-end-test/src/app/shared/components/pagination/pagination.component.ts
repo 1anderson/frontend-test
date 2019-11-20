@@ -14,6 +14,7 @@ export class PaginationComponent {
   public pagesArray: Array<number> = [];
   public currentPage: number = 1;
   @Output() goToPage = new EventEmitter<number>();
+  @Input() noClick: boolean;
 
   @Input() set setPagination(pagination: MyPagination) {
     if (pagination) {

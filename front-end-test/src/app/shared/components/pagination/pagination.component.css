@@ -77,7 +77,7 @@ html, body{
     padding: 0;
     list-style-type: none;
   }
-  
+
   .pagination a{
     display: inline-block;
     padding: 10px 18px;
@@ -262,11 +262,16 @@ html, body{
   .p11 .is-active{
     font-weight: bold;
   }
-  
+
   /* TWELVE */
   
   .p12 a:first-of-type, .p12 a:last-of-type, .p12 .is-active{
     background-color: #2ecc71;
     color: #fff;
     font-weight: bold;
+  }
+
+  .no-click {
+    pointer-events:none;
+
   }
