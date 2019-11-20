@@ -6,11 +6,12 @@ import { RouterModule } from '@angular/router';
 import { CharacterListComponent } from './character-list/character-list.component';
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
 import { PaginationComponent } from '../shared/components/pagination/pagination.component'
+import { SearchInputComponent } from '../shared/components/search-input/search-input.component';
 
 
 
 @NgModule({
-  declarations: [CharacterListComponent, CharacterDetailComponent, PaginationComponent],
+  declarations: [CharacterListComponent, CharacterDetailComponent, PaginationComponent,SearchInputComponent],
   imports: [
     CommonModule,
     FormsModule,

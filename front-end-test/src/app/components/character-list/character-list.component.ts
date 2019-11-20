@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { CrudService } from '../../shared/services/crud/crud.service';
 import { ConfigService } from '../../shared/services/config/config.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-character-list',
@@ -11,11 +11,13 @@ import { Observable } from 'rxjs';
 })
 export class CharacterListComponent implements OnInit {
   private config = {}
-  private list$: Array<any[]>;
+  private characterList: Array<any[]>;
   private resources = {};
-  private _currentPage: number = 1;
-  private _currentSearchValue: string = '';
-  public totalUsersAmount: number = 0;
+  private currentPage: number = 1;
+  private search: string = '';
+  private subscription: Subscription;
+
+  public totalCharactersAmount: number = 0;
 
   constructor( private crudService: CrudService, private configService: ConfigService ) {
     this.resources = this.configService.getResources();
@@ -23,36 +25,48 @@ export class CharacterListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._loadUsers(
-      this._currentPage,
-      this._currentSearchValue
+    this._loadCharacters(
+      this.currentPage,
+      this.search
     );
   }
 
 public goToPage(page: number): void {
-   this.list$ = [];
-    this._currentPage = page;
-    this._loadUsers(
-      this._currentPage,
-      this._currentSearchValue
+   this.characterList = [];
+    this.currentPage = page;
+    this._loadCharacters(
+      this.currentPage,
+      this.search
     );
   }
 
-  private _loadUsers(
-    page: number = 1, searchParam: string = ''
+  public filterList(searchParam: string): void {
+    this.search = searchParam;
+    this._loadCharacters(
+      this.currentPage,
+      this.search
+    );
+  }
+
+  private _loadCharacters(
+    page: number = 1, search: string = ''
   ) {
-      this.crudService.get<any>(this.resources['PEOPLE'], {page})
-      .subscribe(data =>{
-        this.list$ = data['results'];
-        this.totalUsersAmount = data['count'];
+     this.subscription = this.crudService.get<any>(this.resources['PEOPLE'], { page,search })
+        .subscribe(data =>{
+          this.characterList = data['results'];
+          this.totalCharactersAmount = data['count'];
       });
     }
 
   public listIsEmpty() {
-    if( this.list$ === undefined || this.list$.length==0) {
+    if( this.characterList === undefined || this.characterList.length==0 && this.search === '') {
       return true;
     }
     return false;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

@@ -8,26 +8,26 @@
     height: 100vh;
 }
 
-.list-type1 {
+.container-list-characters {
     width:242px;
     margin:0 auto;
 }
     
-.list-type1 ol {
+.container-list-characters ol {
     counter-reset: li;
     list-style: none;
     *list-style: decimal;
     font-size: 15px;
     font-family: 'Raleway', sans-serif;
     padding: 0;
-    margin-bottom: 4em;
+    margin:0;
 }
 
-.list-type1 ol ol {
+.container-list-characters ol ol {
     margin: 0 0 0 2em;
 }
     
-.list-type1 a{
+.container-list-characters a{
     position: relative;
     display: block;
     padding: .4em .4em .4em 2em;
@@ -42,13 +42,13 @@
     transition: all .2s ease-in-out;
 }
     
-.list-type1 a:hover{
+.container-list-characters a:hover{
     background: #d9dfab;
     text-decoration:none;
     transform: scale(1.1);
 }
     
-.list-type1 a:before{
+.container-list-characters a:before{
     content: counter(li);
     counter-increment: li;
     position: absolute;

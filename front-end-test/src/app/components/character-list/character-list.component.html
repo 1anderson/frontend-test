@@ -1,21 +1,30 @@
 <div class="column container-list">
   <h1>Lista de Personagens</h1>
+  <div>
+    <app-search-input placeholder="Procurar por nome"
+      (setValue)="filterList($event)">
+    </app-search-input>
+  </div>
   <div class="spinner-container column" *ngIf="listIsEmpty()">
       <div class="spinner"></div>
   </div>
-<div class="list-type1">
+  <div class="spinner-container column" *ngIf="search.length > 0 && characterList?.length == 0 ">
+      <div ><h2>Sem resultados encontrados =( </h2></div>
+  </div>
+<div class="container-list-characters">
     <ol>
-      <li *ngFor="let list of list$">
-          <a [routerLink]="'/detail'" [state]='list'>{{list.name}}</a>
+      <li *ngFor="let character of characterList">
+          <a [routerLink]="'/detail'" [state]='character'>{{character.name}}</a>
       </li>
     </ol>
 </div>
 <app-pagination
-[setPagination]="{
-  'itemsCount': totalUsersAmount,
-  'pageSize': 10
-}"
-(goToPage)="goToPage($event)"
-[noClick]="listIsEmpty()"
-></app-pagination>
+  [setPagination]="{
+    'itemsCount': totalCharactersAmount,
+    'pageSize': 10
+  }"
+  (goToPage)="goToPage($event)"
+  [noClick]="listIsEmpty()"
+>
+</app-pagination>
 </div>
