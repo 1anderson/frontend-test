@@ -1,18 +1,22 @@
-<div class="pagination" >
-    <span
-      *ngIf="currentPage !== 1"
-      (click)="setPage(currentPage - 1)"
-    >
-      &lt;
-    </span>
+<div class="pagination p1" >
     <ng-container *ngIf="pagesArray.length <= 10" >
-      <span
+    <ul>
+      <a *ngIf="currentPage !== 1"
+      (click)="setPage(currentPage - 1)">
+        <li><</li>
+      </a>
+      <a
         *ngFor="let page of pagesArray; let index = index"
-        [ngClass]="{ 'active': currentPage === index + 1 }"
+        [ngClass]="{ 'is-active': currentPage === index + 1 }"
         (click)="setPage(index + 1)"
       >
-        {{ index + 1 }}
-      </span>
+        <li>{{ index + 1 }}</li>
+      </a>
+      <a  *ngIf="currentPage !== pagesArray.length"
+      (click)="setPage(currentPage + 1)">
+        <li>></li>
+      </a>
+      </ul>
     </ng-container>
     <ng-container *ngIf="pagesArray.length > 10" >
       <select
@@ -25,9 +29,4 @@
         </option>
       </select>
     </ng-container>
-    <span 
-      *ngIf="currentPage !== pagesArray.length"
-      (click)="setPage(currentPage + 1)"
-    >
-      &gt;
-    </span>`,
+   </div>

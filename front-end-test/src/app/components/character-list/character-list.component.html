@@ -1,8 +1,9 @@
-<div>
-
-    <div *ngFor="let list of list$">
-        {{list.name}}
-    </div>
+<div class="column container-list list-type1">
+    <ol>
+      <li *ngFor="let list of list$">
+          <a [routerLink]="'/detail'" [state]='list'>{{list.name}}</a>
+      </li>
+    </ol>
 
     <app-pagination
       [setPagination]="{

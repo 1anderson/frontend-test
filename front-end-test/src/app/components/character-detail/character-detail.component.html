@@ -1,1 +1,43 @@
-<p>character-detail works!</p>
+<div class="column">
+<details>
+        <summary>Dados Físicos</summary>
+        <p><strong>Nome:</strong> {{character.name}}</p>
+        <p><strong>Data de nascimento:</strong> {{character.birth_year}}</p>
+        <p><strong>Cor dos Olhos:</strong> {{character.eye_color}}</p>
+        <p><strong>Gênero:</strong> {{character.gender}}</p>
+        <p><strong>Cor do Cabelo:</strong> {{character.hair_color}}</p>
+        <p><strong>Altura:</strong> {{character.height}}</p>
+        <p><strong>Peso</strong>: {{character.mass}}</p>
+        <p><strong>Cor do Cabelo:</strong> {{character.skin_color}}</p>
+</details>
+<details>
+        <summary>Filmes</summary>
+        <div *ngFor="let film of character.films">
+                <p><strong>Title:</strong> {{film.title}}</p>
+                <p><strong>Diretor</strong> {{film.director}}</p>
+                <p><strong>Data de Lançamento:</strong> {{film.release_date}}</p>
+
+        </div>
+ </details>
+<details>
+        <summary>Espécie</summary>
+        <div *ngFor="let specie of character.species">
+                <p><strong>Nome:</strong> {{specie.name}}</p>
+                <p><strong>Linguagem:</strong> {{specie.language}}</p>
+                <p><strong>Cor dos Olhos:</strong> {{specie.hair_colors}}</p>
+                <p><strong>Vida Útil Média:</strong> {{specie.average_lifespan}}</p>
+                <p><strong>Altura:</strong> {{specie.average_height}}</p>
+                <p><strong>Classificação:</strong> {{specie.classification}}</p>
+        </div>
+</details>
+<details>
+        <summary>Nave estelar</summary>
+        <div *ngFor="let starship of character.starships">
+                <p><strong>Nome:</strong> {{starship.name}}</p>
+                <p><strong>Modelo:</strong> {{starship.model}}</p>
+                <p><strong>Comprimento:</strong> {{starship.height}}</p>
+                <p><strong>Classificação:</strong> {{starship.starship_class}}</p>
+                <p><strong>Hiperdrive:</strong> {{starship.hyperdrive_rating}}</p>
+        </div>
+</details>
+</div>
