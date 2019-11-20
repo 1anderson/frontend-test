@@ -59,7 +59,7 @@ public goToPage(page: number): void {
           this.totalCharactersAmount = data['count'];
           this.load = false;
       }, err => {
-          this.toastService.showError("error so Servidor, tente mais tarde. erro:" + err.statusText + "status:" + err.status);
+          this.toastService.showError("Erro no servidor ao pesquisar por nome, tente mais tarde. erro:" + err.statusText + "status:" + err.status);
           this.load = false;
       });
     }

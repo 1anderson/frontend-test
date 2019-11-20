@@ -41,7 +41,7 @@ export class CharacterDetailComponent implements OnInit {
           this.character['species'] = species;
           this.character['starships'] = starships;
         }, err => {
-          this.toastService.showError("Error no servidor ao pesquisar por nome, tente mais tarde. erro:" + err.statusText);
+          this.toastService.showError("Erro no servidor, tente mais tarde. erro:" + err.statusText);
         })
   }
 }
