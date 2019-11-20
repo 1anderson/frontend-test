@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { CrudService } from '../../shared/services/crud/crud.service';
 import { ConfigService } from '../../shared/services/config/config.service';
+import { ToastService } from 'src/app/shared/services/toast/toast.service';
 
 @Component({
   selector: 'app-character-list',
@@ -16,10 +17,10 @@ export class CharacterListComponent implements OnInit {
   private currentPage: number = 1;
   private search: string = '';
   private subscription: Subscription;
-
+  private load: boolean = false;
   public totalCharactersAmount: number = 0;
 
-  constructor( private crudService: CrudService, private configService: ConfigService ) {
+  constructor( private crudService: CrudService, private configService: ConfigService, private toastService: ToastService ) {
     this.resources = this.configService.getResources();
 
   }
@@ -32,7 +33,6 @@ export class CharacterListComponent implements OnInit {
   }
 
 public goToPage(page: number): void {
-   this.characterList = [];
     this.currentPage = page;
     this._loadCharacters(
       this.currentPage,
@@ -51,22 +51,29 @@ public goToPage(page: number): void {
   private _loadCharacters(
     page: number = 1, search: string = ''
   ) {
+    this.characterList = [];
+    this.load = true;
      this.subscription = this.crudService.get<any>(this.resources['PEOPLE'], { page,search })
         .subscribe(data =>{
           this.characterList = data['results'];
           this.totalCharactersAmount = data['count'];
+          this.load = false;
+      }, err => {
+          this.toastService.showError("error so Servidor, tente mais tarde. erro:" + err.statusText + "status:" + err.status);
+          this.load = false;
       });
     }
 
-  public listIsEmpty() {
-    if( this.characterList === undefined || this.characterList.length==0 && this.search === '') {
-      return true;
-    }
-    return false;
+  public isLoad() {
+    return this.load;
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  isSearch() {
+    return this.search.length > 0;
   }
 
 }

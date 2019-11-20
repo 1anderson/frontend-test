@@ -1,4 +1,4 @@
-<div class="pagination p1"  [ngClass]="{ 'no-click': noClick }">
+<div class="pagination container"  [ngClass]="{ 'no-click': noClick }">
     <ng-container *ngIf="pagesArray.length <= 10" >
     <ul>
       <a *ngIf="currentPage !== 1"
@@ -12,9 +12,10 @@
       >
         <li class="pointer">{{ index + 1 }}</li>
       </a>
-      <a  *ngIf="currentPage !== pagesArray.length"
+      <a *ngIf="currentPage !== pagesArray.length"
       (click)="setPage(currentPage + 1)" class="pointer">
         <li>></li>
       </a>
       </ul>
-    </ng-container>
+  </ng-container>
+</div>

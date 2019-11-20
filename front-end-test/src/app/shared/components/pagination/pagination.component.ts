@@ -25,11 +25,8 @@ export class PaginationComponent {
     }
   }
   public setPage(pageNumber: number): void {
-
     if (pageNumber === this.currentPage)
       return;
-    console.log(pageNumber, this.currentPage)
-
     this.currentPage = pageNumber;
     this.goToPage.emit(pageNumber);
   }

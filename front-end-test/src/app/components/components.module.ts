@@ -11,7 +11,7 @@ import { SearchInputComponent } from '../shared/components/search-input/search-i
 
 
 @NgModule({
-  declarations: [CharacterListComponent, CharacterDetailComponent, PaginationComponent,SearchInputComponent],
+  declarations: [CharacterListComponent, CharacterDetailComponent, PaginationComponent, SearchInputComponent],
   imports: [
     CommonModule,
     FormsModule,

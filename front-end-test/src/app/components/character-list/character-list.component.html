@@ -5,13 +5,13 @@
       (setValue)="filterList($event)">
     </app-search-input>
   </div>
-  <div class="spinner-container column" *ngIf="listIsEmpty()">
+  <div class="spinner-container column" *ngIf="isLoad()">
       <div class="spinner"></div>
   </div>
-  <div class="spinner-container column" *ngIf="search.length > 0 && characterList?.length == 0 ">
+  <div class="spinner-container column" *ngIf="search.length > 0 && characterList?.length == 0 && !isLoad() ">
       <div ><h2>Sem resultados encontrados =( </h2></div>
   </div>
-<div class="container-list-characters">
+<div class="container-list-characters" *ngIf="!isLoad()" >
     <ol>
       <li *ngFor="let character of characterList">
           <a [routerLink]="'/detail'" [state]='character'>{{character.name}}</a>
@@ -24,7 +24,7 @@
     'pageSize': 10
   }"
   (goToPage)="goToPage($event)"
-  [noClick]="listIsEmpty()"
+  [noClick]="isLoad() ||  characterList?.length == 0"
 >
 </app-pagination>
 </div>

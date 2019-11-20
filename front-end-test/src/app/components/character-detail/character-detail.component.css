@@ -24,3 +24,21 @@ details[open] summary {
 details:active {
     border: 1px solid black;
 }
+
+button {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;
+    height: 28px;
+  }
+
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .separator {
+    color:#93C775;border-color: #93C775;
+  }

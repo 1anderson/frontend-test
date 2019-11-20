@@ -1,4 +1,8 @@
 <div class="column">
+<div class="header-container">
+    <h1>Detalhes do personagem</h1> <button [routerLink]="'/list'">Voltar a Lista</button>
+</div>
+
 <details>
         <summary>Dados Físicos</summary>
         <p><strong>Nome:</strong> {{character.name}}</p>
@@ -16,7 +20,7 @@
                 <p><strong>Title:</strong> {{film.title}}</p>
                 <p><strong>Diretor</strong> {{film.director}}</p>
                 <p><strong>Data de Lançamento:</strong> {{film.release_date | date:'d/MM/yyyy' }}</p>
-                <hr style="color:#93C775;border-color: #93C775;">
+                <hr class="separator">
         </div>
 </details>
 <details *ngIf="character.species?.length > 0">
